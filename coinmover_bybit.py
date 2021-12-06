@@ -51,7 +51,7 @@ while True:
         print("we made profit:",profit)
         transfer = float(profit) * float(percentage_move) / 100
         print("transferring: ",transfer, " to SPOT ")
-        transferred = session.create_internal_transfer(transfer_id=str(uuid4()),coin="USDT",amount=str(transfer),from_account_type="CONTRACT",to_account_type="SPOT")
+        transferred = session.create_internal_transfer(transfer_id=str(uuid4()),coin="USDT",amount=str(round(transfer,2)),from_account_type="CONTRACT",to_account_type="SPOT")
         status_message = "Transferred: USDT "  + str(transfer) + " to SPOT."
     else:
         print("No profit this time: ", (float(balance) - float(old_balance)))
