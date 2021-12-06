@@ -1,5 +1,7 @@
 # coinmover_bybit
 
+first install: pip install pybit  
+
 Bybit: Create an APIkey 
 
 edit config.ini , fill in:  
