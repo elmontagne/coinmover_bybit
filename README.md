@@ -16,7 +16,8 @@ sleeptime = after how many minutes you want to run this again
 discord_webhook = your webhook if you want to use discord notifications 
 
 When all configuration is done, you can run the script: python3 coinmover_bybit.py  
-If your want to run the script in the backgroud while logged off, you can use 'screen'. within screen, start the script, then ctrl-a d to disconnect the screen. You can always return to this with 'screen -r'.
+If your want to run the script in the backgroud while logged off, you can use 'screen'. within screen, start the script, then ctrl-a d to disconnect the screen. You can always return to this with 'screen -r'.  
+First time the script is run, balance is retrieved and after the next cycle the profits will be moved.
 
 Not done yet: 
 maximum margin in use
