@@ -34,28 +34,30 @@ while True:
     file_exists = os.path.isfile('status')
     if file_exists:
         with open('status', 'r') as ff:
-            old_balance=ff.readline()
+            old_pnl=ff.readline()
     else:
         f = open("status","w")
         f.write("0")	
-        old_balance=0
+        old_pnl=0
 
-    print("Old balance: ",old_balance)	
+    print("Old balance: ",old_pnl)	
  
     wallet = session.get_wallet_balance(coin="USDT")
     balance = wallet['result']['USDT']['equity']
+    pnl = wallet['result']['USDT']['cum_realised_pnl']
     print("Current balance: ",balance)
+    print("Current PNL: ",pnl)
 
-    if float(old_balance) != 0 and float(balance) > float(old_balance):
-        profit = float(balance) - float(old_balance)
+    if float(old_pnl) != 0 and float(pnl) > float(old_pnl):
+        profit = float(pnl) - float(old_pnl)
         print("we made profit:",profit)
         transfer = float(profit) * float(percentage_move) / 100
         print("transferring: ",transfer, " to SPOT ")
         transferred = session.create_internal_transfer(transfer_id=str(uuid4()),coin="USDT",amount=str(round(transfer,2)),from_account_type="CONTRACT",to_account_type="SPOT")
         status_message = "Transferred: USDT "  + str(transfer) + " to SPOT."
     else:
-        print("No profit this time: ", (float(balance) - float(old_balance)))
-        status_message = "No profit this time: "+str(float(balance) - float(old_balance))
+        print("No profit this time: ", (float(pnl) - float(old_pnl)))
+        status_message = "No profit this time: "+str(float(pnl) - float(old_pnl))
     data = {
    "content" : status_message
 }
@@ -65,6 +67,6 @@ while True:
 
 
     with open('status', 'w') as f:
-        f.write(str(balance))
+        f.write(str(pnl))
     print("Sleeping for ",sleeptime,"seconds")
     time.sleep(sleeptime)
