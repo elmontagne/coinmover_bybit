@@ -21,3 +21,4 @@ First time the script is run, balance is retrieved and after the next cycle the 
 
 Not done yet: 
 maximum margin in use
+cum_realised_pnl  
