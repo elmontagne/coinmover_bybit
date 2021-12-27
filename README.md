@@ -4,10 +4,13 @@
 sudo apt install python3-pip  
 pip install pybit  
 
+adviced:  
+apt install screen   
+
 Bybit: Create an APIkey 
 
 ## installation:  
-Copy coinmover_bybit.py and config.ini to your server.  
+Copy coinmover_bybit.py and config.ini to your server OR login to you server and enter: wget https://github.com/elmontagne/coinmover_bybit/archive/refs/heads/main.zip   (after that: unzip main.zip).     
 edit config.ini , fill in:  
 api key  
 api secret  
