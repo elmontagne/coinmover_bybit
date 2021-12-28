@@ -1,6 +1,15 @@
 # coinmover_bybit
 
 ## prerequisites:  
+
+## running on Windows:   
+1. unzip the file to the desired location   
+2. go to that folder, open the config file in that directory and edit settings (you need at least to enter the API and SECRET key. You can also change the sleeptime (waiting time until next check), percentage move and discord webhook.  
+3. unblock the executable (just like you did with wickhunter.exe).  
+4. after all the steps are done, doubleclick the executable to run it.   
+
+
+## running on Linux with Python:   
 sudo apt install python3-pip  
 pip install pybit  
 
