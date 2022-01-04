@@ -16,6 +16,7 @@ import requests
 
 config = configparser.ConfigParser()
 config.read('config.ini')
+botname = config['bybit_coinmover']['botname']
 sleeptime = config['bybit_coinmover']['sleeptime']
 apikey = config['bybit_coinmover']['apikey']
 apisecret = config['bybit_coinmover']['apisecret']
@@ -54,10 +55,10 @@ while True:
         transfer = float(profit) * float(percentage_move) / 100
         print("transferring: ",transfer, " to SPOT ")
         transferred = session.create_internal_transfer(transfer_id=str(uuid4()),coin="USDT",amount=str(round(transfer,2)),from_account_type="CONTRACT",to_account_type="SPOT")
-        status_message = "Transferred: USDT "  + str(transfer) + " to SPOT."
+        status_message = "**TRANSFER**: SUCCESS account: "+botname+" totalBalance: "+balance+" Profit: "+profit+" transferred: USDT "  + str(transfer) + " to SPOT."
     else:
         print("No profit this time: ", (float(pnl) - float(old_pnl)))
-        status_message = "No profit this time: "+str(float(pnl) - float(old_pnl))
+        status_message = "**TRANSFER**: No profit this time: "+str(float(pnl) - float(old_pnl))+" **account**: "+botname
     data = {
    "content" : status_message
 }
