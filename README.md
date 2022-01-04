@@ -28,6 +28,7 @@ First time the script is run, balance is retrieved and after the next cycle the 
 
 ## edit config file.  
 edit config.ini , fill in:  
+botname: name your bot
 api key  
 api secret  
 percentage_move = percentage of profits to be moved to spot  
