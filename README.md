@@ -39,3 +39,8 @@ discord_webhook = your webhook if you want to use discord notifications
 Not done yet: 
 maximum margin in use
 cum_realised_pnl  
+
+Feeling the need to support me?
+0x12469989c0f3b38F0f230F94b58e852249cFC9DD (BEP20/ERC20)
+TVvx4GE4Z9CmpshMyubBHbxizHZ2UxNi4H (TRC20)
+
