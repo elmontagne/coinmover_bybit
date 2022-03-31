@@ -35,11 +35,7 @@ api secret
 percentage_move = percentage of profits to be moved to spot  
 sleeptime = after how many minutes you want to run this again  
 discord_webhook = your webhook if you want to use discord notifications 
-
-
-Not done yet: 
-maximum margin in use
-cum_realised_pnl  
+maxmargin = maximum percentage of margin in use. Above this set number there won't be transferred any funds
 
 Feeling the need to support me?    
 0x12469989c0f3b38F0f230F94b58e852249cFC9DD (BEP20/ERC20).   
