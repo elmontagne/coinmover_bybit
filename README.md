@@ -1,12 +1,15 @@
 # coinmover_bybit
 
 ## prerequisites:  
+Bybit: Create an APIkey and make sure to activate at least: Contracts - Orders Positions  + Wallet - Account Transfer Subaccount Transfer.   
+
 
 ## running on Windows:   
-1. unzip the file to the desired location   
-2. go to that folder, open the config file in that directory and edit settings (you need at least to enter the API and SECRET key. You can also change the sleeptime (waiting time until next check), percentage move and discord webhook.  
-3. unblock the executable (just like you did with wickhunter.exe).  
-4. after all the steps are done, doubleclick the executable to run it.   
+1. Make sure to install .net core ( https://dotnet.microsoft.com/download/dotnet-core/3.1/runtime/ ).   
+2. unzip the file to the desired location   
+3. go to that folder, open the config file in that directory and edit settings (you need at least to enter the API and SECRET key. You can also change the sleeptime (waiting time until next check), percentage move and discord webhook.  
+4. unblock the executable (just like you did with wickhunter.exe).  
+5. after all the steps are done, doubleclick the executable to run it.   
 
 
 ## running on Linux with Python:   
@@ -15,8 +18,6 @@ pip install pybit
 
 adviced:  
 apt install screen   
-
-Bybit: Create an APIkey 
 
 Copy coinmover_bybit.py and config.ini to your server OR login to you server and enter: wget https://github.com/elmontagne/coinmover_bybit/archive/refs/heads/main.zip   (after that: unzip main.zip).     
 
