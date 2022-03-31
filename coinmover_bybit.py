@@ -41,21 +41,26 @@ while True:
         f.write("0")	
         old_pnl=0
 
-    print("Old balance: ",old_pnl)	
+    #print("Old balance: ",old_pnl)	
  
     wallet = session.get_wallet_balance(coin="USDT")
     balance = wallet['result']['USDT']['equity']
     pnl = wallet['result']['USDT']['cum_realised_pnl']
+    used_margin = wallet['result']['USDT']['used_margin']
     print("Current balance: ",balance)
     print("Current PNL: ",pnl)
+    marg = (float(used_margin)/float(balance))*100
 
     if float(old_pnl) != 0 and float(pnl) > float(old_pnl):
         profit = float(pnl) - float(old_pnl)
         print("we made profit:",profit)
         transfer = float(profit) * float(percentage_move) / 100
-        print("transferring: ",transfer, " to SPOT ")
-        transferred = session.create_internal_transfer(transfer_id=str(uuid4()),coin="USDT",amount=str(round(transfer,2)),from_account_type="CONTRACT",to_account_type="SPOT")
-        status_message = "**TRANSFER**: SUCCESS **account:** "+botname+" **totalBalance:** "+str(balance)+" **Profit:** "+str(profit)+" **transferred:** USDT "  + str(transfer) + " to SPOT."
+        if float(marg) <= float(maxmargin):
+            print("transferring: ",transfer, " to SPOT ")
+            transferred = session.create_internal_transfer(transfer_id=str(uuid4()),coin="USDT",amount=str(round(transfer,2)),from_account_type="CONTRACT",to_account_type="SPOT")
+            status_message = "**TRANSFER**: SUCCESS **account:** "+botname+" **totalBalance:** "+str(balance)+" **Profit:** "+str(profit)+" **transferred:** USDT "  + str(transfer) + " to SPOT."
+        else:
+            status_message = "**TRANSFER**: FAILED **REASON:** Above maximum defined margin"
     else:
         print("No profit this time: ", (float(pnl) - float(old_pnl)))
         status_message = "**TRANSFER**: No profit this time: "+str(float(pnl) - float(old_pnl))+" **account**: "+botname
