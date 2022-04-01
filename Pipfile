@@ -5,6 +5,7 @@ name = "pypi"
 
 [packages]
 logzero = "*"
+pybit = "*"
 
 [dev-packages]
 pylint = "*"

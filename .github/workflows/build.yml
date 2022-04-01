@@ -1,0 +1,49 @@
+---
+name: Build
+
+on:
+  release:
+    types:
+      - released
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        python-version: ["3.9"]
+        os: ["ubuntu-latest", "windows-latest"]
+        include:
+          - os: ubuntu-latest
+            file_name: coinmover_bybit
+          - os: windows-latest
+            file_name: coinmover_bybit.exe
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install dependencies
+        run: |
+          pip install pyinstaller pipenv
+          pipenv lock -r > requirements.txt
+          pip install -r requirements.txt
+
+      - name: Package Application
+        run: pyinstaller --onefile --dist dist -n coinmover_bybit coinmover_bybit.py
+
+      - name: Upload
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ github.event.release.upload_url }}
+          asset_path: ./dist/${{ matrix.file_name }}
+          asset_name: ${{ matrix.file_name }}
+          asset_content_type: application/octet-stream
