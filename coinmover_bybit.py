@@ -13,6 +13,7 @@ import time
 from uuid import uuid4
 
 import requests
+from logzero import logger
 from pybit import HTTP
 
 config = configparser.ConfigParser()
@@ -31,7 +32,7 @@ session = HTTP("https://api.bybit.com", api_key=apikey, api_secret=apisecret)
 while True:
     currenttime = time.localtime()
     timenow = time.strftime("%I:%M:%S %p", currenttime)
-    print(timenow, " Checking...")
+    logger.info(timenow, " Checking...")
     file_exists = os.path.isfile("status")
     if file_exists:
         with open("status", "r", encoding="UTF-8") as ff:
@@ -41,22 +42,22 @@ while True:
             f.write("0")
             old_pnl = 0
 
-    # print("Old balance: ",old_pnl)
+    # logger.info("Old balance: ",old_pnl)
 
     wallet = session.get_wallet_balance(coin="USDT")
     balance = wallet["result"]["USDT"]["equity"]
     pnl = wallet["result"]["USDT"]["cum_realised_pnl"]
     used_margin = wallet["result"]["USDT"]["used_margin"]
-    print("Current balance: ", balance)
-    print("Current PNL: ", pnl)
+    logger.info("Current balance: %s", balance)
+    logger.info("Current PNL: %s", pnl)
     marg = (float(used_margin) / float(balance)) * 100
 
     if float(old_pnl) != 0 and float(pnl) > float(old_pnl):
         profit = float(pnl) - float(old_pnl)
-        print("we made profit:", profit)
+        logger.info("we made profit: %s", profit)
         transfer = float(profit) * float(percentage_move) / 100
         if float(marg) <= float(maxmargin):
-            print("transferring: ", transfer, " to SPOT ")
+            logger.info("transferring: %s to SPOT", transfer)
             transferred = session.create_internal_transfer(
                 transfer_id=str(uuid4()),
                 coin="USDT",
@@ -80,7 +81,7 @@ while True:
                 "**TRANSFER**: FAILED **REASON:** Above maximum defined margin"
             )
     else:
-        print("No profit this time: ", (float(pnl) - float(old_pnl)))
+        logger.info("No profit this time: %s", (float(pnl) - float(old_pnl)))
         status_message = (
             "**TRANSFER**: No profit this time: "
             + str(float(pnl) - float(old_pnl))
@@ -93,5 +94,5 @@ while True:
 
     with open("status", "w", encoding="UTF-8") as f:
         f.write(str(pnl))
-    print("Sleeping for ", sleeptime, "seconds")
+    logger.info("Sleeping for %s seconds", sleeptime)
     time.sleep(sleeptime)
