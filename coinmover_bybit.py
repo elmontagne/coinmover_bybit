@@ -34,12 +34,12 @@ while True:
     print(timenow, " Checking...")
     file_exists = os.path.isfile("status")
     if file_exists:
-        with open("status", "r") as ff:
+        with open("status", "r", encoding="UTF-8") as ff:
             old_pnl = ff.readline()
     else:
-        f = open("status", "w")
-        f.write("0")
-        old_pnl = 0
+        with open("status", "w", encoding="UTF-8") as f:
+            f.write("0")
+            old_pnl = 0
 
     # print("Old balance: ",old_pnl)
 
@@ -91,7 +91,7 @@ while True:
     if discord_webhook != "":
         result = requests.post(discord_webhook, json=data)
 
-    with open("status", "w") as f:
+    with open("status", "w", encoding="UTF-8") as f:
         f.write(str(pnl))
     print("Sleeping for ", sleeptime, "seconds")
     time.sleep(sleeptime)
