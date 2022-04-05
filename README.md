@@ -3,16 +3,18 @@
 ## prerequisites:  
 Bybit: Create an APIkey and make sure to activate at least: Contracts - Orders Positions  + Wallet - Account Transfer Subaccount Transfer.   
 
+## follow all the steps below to install
 
-## running on Windows:   
-1. Make sure to install .net core ( https://dotnet.microsoft.com/download/dotnet-core/3.1/runtime/ ).   
-2. unzip the file to the desired location   
-3. go to that folder, open the config file in that directory and edit settings (you need at least to enter the API and SECRET key. You can also change the sleeptime (waiting time until next check), percentage move and discord webhook.  
-4. unblock the executable (just like you did with wickhunter.exe).  
-5. after all the steps are done, doubleclick the executable to run it.   
+## running this script on Windows:   
+1. Download coinmover_bybit_windows.zip
+2. Make sure to install .net core ( https://dotnet.microsoft.com/download/dotnet-core/3.1/runtime/ ).   
+3. unzip the file to the desired location   
+4. go to that folder, open the config file in that directory and edit settings (you need at least to enter the API and SECRET key. You can also change the sleeptime (waiting time until next check), percentage move and discord webhook.  
+5. unblock the executable (just like you did with wickhunter.exe, rightclick the executable, select properties and if it is there: select unblock).  
+6. after all the steps are done, doubleclick the executable to run it.   
 
 
-## running on Linux with Python:   
+## running this script on Linux with Python:   
 sudo apt install python3-pip  
 pip install pybit  
 
@@ -36,6 +38,9 @@ percentage_move = percentage of profits to be moved to spot
 sleeptime = after how many minutes you want to run this again  
 discord_webhook = your webhook if you want to use discord notifications   
 maxmargin = maximum percentage of margin in use. Above this set number there won't be transferred any funds
+
+## thanks
+Special thanks to https://github.com/triat for very valuable input improving the script!
 
 Feeling the need to support me?    
 0x12469989c0f3b38F0f230F94b58e852249cFC9DD (BEP20/ERC20).   
