@@ -95,6 +95,7 @@ class Bybit:
             f"**transferred:** {transfer} USDT TO SPOT"
         )
         self.notify_discord(status_message)
+        self.old_pnl = self.pnl
 
     def notify_discord(self, message):
         """Notify the discord webhook"""
@@ -119,10 +120,6 @@ def coinmover():
     while True:
         currenttime = time.localtime()
         timenow = time.strftime("%I:%M:%S %p", currenttime)
-        if os.path.isfile("status") and os.stat("status").st_size > 0:
-            logger.debug("Loading status file")
-            with open("status", "r", encoding="UTF-8") as pnl_file:
-                self.old_pnl = float(pnl_file.readline())
 
 
         logger.info("%s Checking...", timenow)
