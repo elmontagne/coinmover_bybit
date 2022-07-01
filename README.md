@@ -5,12 +5,13 @@ Bybit: Create an APIkey and make sure to activate at least: Contracts - Orders P
 
 ## follow all the steps below to install
 
-## running this script on Windows:   
-1. Download coinmover_bybit_windows.zip
+## running this script on Windows:
+1. Download coinmover_bybit.exe from the releases page ( https://github.com/elmontagne/coinmover_bybit/releases ).   
+1a. Aternatively: Download coinmover_bybit_windows.zip.   
 2. Make sure to install .net core ( https://dotnet.microsoft.com/download/dotnet-core/3.1/runtime/ ).   
 ![dotnet](https://user-images.githubusercontent.com/90505490/161711018-c820d2dd-2bb9-4ac9-b6ef-abf3a59a6b38.jpg)
 
-3. unzip the file to the desired location   
+3. Place the exe (or unzip the file if you downloaded the zip file) to the desired location   
 4. go to that folder, open the config file in that directory and edit settings (you need at least to enter the API and SECRET key. You can also change the sleeptime (waiting time until next check), percentage move and discord webhook.  
 5. unblock the executable (just like you did with wickhunter.exe, rightclick the executable, select properties and if it is there: select unblock).  
 6. after all the steps are done, doubleclick the executable to run it.   
