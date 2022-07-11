@@ -55,9 +55,9 @@ class Bybit:
     def refresh_balance(self):
         """Refresh the balance from the API"""
         self.wallet = self.session.get_wallet_balance(coin="USDT")
-        self.balance = float(self.wallet["result"]["USDT"]["equity"])
-        self.pnl = float(self.wallet["result"]["USDT"]["cum_realised_pnl"])
-        self.used_margin = float(self.wallet["result"]["USDT"]["used_margin"])
+        self.balance = round(float(self.wallet["result"]["USDT"]["equity"]),2)
+        self.pnl = round(float(self.wallet["result"]["USDT"]["cum_realised_pnl"]),2)
+        self.used_margin = round(float(self.wallet["result"]["USDT"]["used_margin"]),2)
         self.margin = self.used_margin / self.balance * 100
 
         with open("status", "w", encoding="UTF-8") as pnl_file:
