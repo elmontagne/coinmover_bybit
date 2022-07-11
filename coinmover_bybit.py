@@ -103,7 +103,7 @@ class Bybit:
         if self.discord_webhook != "":
             result = requests.post(self.discord_webhook, json=data)
 
-            if result.status_code != 200:
+            if result.status_code != 200 or result.status_code != 204:
                 logger.error("Discord webhook error: %s", result.text)
 
 
