@@ -78,7 +78,8 @@ class Bybit:
 
     def transfer(self):
         """Transfer the money from the bot to SPOT"""
-        transfer = self.profit * self.percentage_move / 100
+        totransfer = self.profit * self.percentage_move / 100
+        transfer = round(totransfer,2)
         logger.info("Transferring %s to SPOT", transfer)
 
         self.session.create_internal_transfer(
