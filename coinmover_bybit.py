@@ -66,7 +66,7 @@ class Bybit:
     def has_profit(self):
         """Check if the bot has profit"""
         if self.old_pnl != 0 and self.pnl > self.old_pnl:
-            self.profit = self.pnl - self.old_pnl
+            self.profit = round(self.pnl - self.old_pnl ,2)
             return True
         else:
             self.profit = 0
